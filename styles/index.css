@@ -1,0 +1,144 @@
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  /* 2. Remove default margin */
+  * {
+    margin: 0;
+  }
+  
+  body {
+    /* 3. Add accessible line-height */
+    line-height: 1.5;
+    /* 4. Improve text rendering */
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-flow: row;
+    flex-wrap: nowrap;
+  }
+  
+  /* 5. Improve media defaults */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+  
+  /* 6. Inherit fonts for form controls */
+  input, button, textarea, select {
+    font: inherit;
+  }
+  
+  /* 7. Avoid text overflows */
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+  
+  /* 8. Improve line wrapping */
+  p {
+    text-wrap: pretty;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+  }
+  
+  /*
+    9. Create a root stacking context
+  */
+  #root, #__next {
+    isolation: isolate;
+  }
+
+  button {
+    border-radius: 0;
+    text-align: inherit;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    color: inherit;
+    font: inherit;
+  }
+
+  body .content {
+    height: 100vh;
+    width: 75%;
+    padding: 1rem;
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  body .content .quick-analytics{
+    padding: 1rem;
+    width: 100%;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  body .content .quick-analytics .data{
+    border: .25rem solid #47663B;
+    border-radius: 10px;
+    padding: 1rem;
+    width: 40%;
+    display: flex;
+    flex-flow: row;
+  }
+
+  body .content .quick-analytics .data:hover{
+    background-color: #47663B;
+    color: #eee;
+  }
+
+  body .content .quick-analytics .data img{
+    width: 20%;
+  }
+
+  body .content .quick-analytics .data:hover img{
+    display: none;
+  }
+
+  body .content .quick-analytics .data .view-message{
+    display: none;
+    font-family: Poppins;
+    font-size: .75rem;
+    font-weight: bold;
+  }
+
+  body .content .quick-analytics .data:hover .view-message{
+    display: block;
+  }
+
+  body .content .quick-analytics .data div{
+    flex-grow: 1;
+  }
+
+  body .content .quick-analytics .data div .main-title{
+    font-family: Poppins;
+    text-align: end;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  body .content .quick-analytics .data div .main-data{
+    font-family: IBM Plex Serif;
+    text-align: end;
+    font-size: 1.5rem;
+  }
+
+  body .content .quick-analytics .data div .additional-data{
+    font-family: IBM Plex Serif;
+    text-align: end;
+    font-size: .75rem;
+    font-style: italic;
+  }
+
+  
+
+  /* https://colorhunt.co/palette/1f452947663be8ecd7eed3b1 */
