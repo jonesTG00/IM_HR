@@ -1,5 +1,5 @@
 <?php
-    include 'methods.php';
+    include 'methods/index_methods.php';
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +54,7 @@
                     ?>
                     </p>
 
-                    <p class="additional-data">Last Department Created :
+                    <p class="additional-data"> Last Department Created :
                         <?php
                         $last_created = return_last_department_created();
                         echo $last_created["department_name"];
@@ -75,7 +75,7 @@
                     ?>
                     </p>
 
-                    <p class="additional-data">Department with most population :
+                    <p class="additional-data"> Department with most population :
                         <?php
                         $most_populated = return_most_populated_department();
                         echo $most_populated["department_name"];
@@ -96,7 +96,7 @@
                     ?>
                     </p>
 
-                    <p class="additional-data">Department with most population :
+                    <p class="additional-data">Employees with salary higher than average :
                         <?php
                         $count = return_count_greater_than_average_salary();
                         echo $count;
@@ -104,6 +104,25 @@
                     </p>
                 </div>
             </button>
+        </div>
+
+        <div class="tables">
+            <table>
+                <tr>
+                    <th>Employee Name</th>
+                    <th>Job Title</th>
+                    <th>Department Name</th>
+                    <th>Hired Date</th>
+                    <th>View Details</th>
+                </tr>
+                <tr>
+                    <td>Trial</td>
+                    <td>Trial</td>
+                    <td>Trial</td>
+                    <td>Trial</td>
+                    <td>Trial</td>
+                </tr>
+            </table>
         </div>
     </div>
 </body>

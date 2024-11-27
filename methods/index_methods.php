@@ -115,6 +115,8 @@ function return_count_greater_than_average_salary(){
     return $result->num_rows;
 }
 
+
+
 // UTILITIES
 function formatted_date($toFormat){
     $date = new DateTime($toFormat);
