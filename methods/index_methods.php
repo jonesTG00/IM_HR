@@ -12,10 +12,6 @@ function connection(){
     return $conn;
 }
 
-// function query_handler($query, $error_message){
-
-// }
-
 // QUERIES
 function return_employee_count(){
     $conn = connection();
@@ -152,7 +148,7 @@ function return_employee_department($employee_id){
         $result = $conn->query($query);
         $rows = array();
         while ($row = $result->fetch_assoc()) {
-            echo $row["department"];
+            $rows[] = $row;
         }
         $conn->close();
         return $rows;
@@ -174,10 +170,10 @@ function  formatted_employee_departments(array $department_list){
 
     $toReturn = "";
     foreach($department_list as $x){
-        $toReturn = $x["department"].", ";
+        $toReturn = $toReturn.$x["department"].", ";
     }
 
-    return $toReturn;
+    return substr($toReturn, 0, -2);
 }
 
 // function CheckConnection(){

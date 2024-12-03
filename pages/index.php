@@ -19,6 +19,7 @@
         include "sidebar.php";
     ?>
     <div class="content">
+        <p class="section-title">Quick Analytics</p>
         <div class="quick-analytics">
             <button class="data">
                 <p class="view-message">View<br>Employees > </p>
@@ -106,16 +107,19 @@
             </button>
         </div>
 
+        <p class="section-title">Tables</p>
         <div class="tables">
-            <table>
-                <tr>
-                    <th>Employee Name</th>
-                    <th>Job Title</th>
-                    <th>Department Name</th>
-                    <th>Hired Date</th>
-                    <th>View Details</th>
-                </tr>
-                
+            <div class="table-container">
+                <p class="table-title">3 recently hired employees: </p>
+                <table>
+                    <tr>
+                        <th>Employee Name</th>
+                        <th>Job Title</th>
+                        <th>Department Name</th>
+                        <th>Hired Date</th>
+                        <th>View Details</th>
+                    </tr>
+
                     <?php
                     $rows = last_three_employees();
                     foreach ($rows as $toDisplay) {
@@ -127,11 +131,13 @@
                         "<td>".$toDisplay['job_title']."</td>".
                         "<td>".$department_string."</td>".
                         "<td>".$toDisplay['hired_date']."</td>".
+                        "<td><button class='view-button'><p>View</p><button></td>".
                         "</tr>";
                     }
                     ?>
-                
-            </table>
+
+                </table>
+            </div>
         </div>
     </div>
 </body>

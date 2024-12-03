@@ -61,7 +61,8 @@
     font: inherit;
   }
 
-  .sidebar {
+  body .sidebar {
+    /* height: 100%; */
     background-color:#1F4529;
     height: 100vh;
     width: 25%;

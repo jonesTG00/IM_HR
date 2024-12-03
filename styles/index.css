@@ -8,16 +8,6 @@
     margin: 0;
   }
   
-  body {
-    /* 3. Add accessible line-height */
-    line-height: 1.5;
-    /* 4. Improve text rendering */
-    -webkit-font-smoothing: antialiased;
-    display: flex;
-    flex-flow: row;
-    flex-wrap: nowrap;
-  }
-  
   /* 5. Improve media defaults */
   img, picture, video, canvas, svg {
     display: block;
@@ -37,16 +27,6 @@
   /* 8. Improve line wrapping */
   p {
     text-wrap: pretty;
-  }
-  h1, h2, h3, h4, h5, h6 {
-    text-wrap: balance;
-  }
-  
-  /*
-    9. Create a root stacking context
-  */
-  #root, #__next {
-    isolation: isolate;
   }
 
   button {
@@ -79,14 +59,20 @@
   }
 
   body .content {
-    height: 100vh;
-    width: 75%;
-    padding: 1rem;
+    height: 100%;
+    width: 100%;
+    padding: 2rem;
     display: flex;
-    flex-flow: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
+    flex-flow: column;
+    flex-wrap: nowrap;
     justify-content: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+  body .content .section-title{
+    font-family: Poppins;
+    font-size: 3rem;
   }
 
   body .content .quick-analytics{
@@ -107,6 +93,7 @@
     width: 40%;
     display: flex;
     flex-flow: row;
+    transition: .2s ease-in-out;
   }
 
   body .content .quick-analytics .data:hover{
@@ -155,6 +142,43 @@
     text-align: end;
     font-size: .75rem;
     font-style: italic;
+  }
+
+  body .content .tables{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background-color: red;
+  }
+
+  body .content .tables .table-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  body .content .tables table tr td .view-button{
+    background-color: #E8ECD7;
+    padding: .25rem;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    transition: .15s ease-in-out;
+  }
+
+  body .content .tables table tr td .view-button:hover{
+    background-color: #47663B;
+    color: white;
+  }
+
+  body .content .tables .table-title{
+    font-family: Poppins;
+    font-size: 1.25rem;
+    color: #47663B;
   }
 
   
