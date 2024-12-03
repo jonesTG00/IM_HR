@@ -3,7 +3,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="styles/sidebar.css">
+<link rel="stylesheet" href="../styles/sidebar.css">
 
 <head>
     <meta charset="UTF-8">
@@ -20,17 +20,17 @@
         </div>
 
         <button class='sidebar-option' onClick='GoToHome()'>
-            <img src='./img/home.png' alt='Home'>
+            <img src='../img/home.png' alt='Home'>
             <p class='sidebar-option-text'>Home</p>
         </button>
 
         <button class='sidebar-option' onClick='GoToEmployees()'>
-            <img src='./img/group.png' alt='Employees'>
+            <img src='../img/group.png' alt='Employees'>
             <p class='sidebar-option-text'>Employees</p>
         </button>
 
         <button class='sidebar-option' onClick='GoToProjects()'>
-            <img src='./img/building.png' alt='Home'>
+            <img src='../img/building.png' alt='Home'>
             <p class='sidebar-option-text'>Projects</p>
         </button>
 

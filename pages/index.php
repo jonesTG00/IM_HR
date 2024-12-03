@@ -1,10 +1,10 @@
 <?php
-    include 'methods/index_methods.php';
+    include '../methods/index_methods.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="styles/index.css">
+<link rel="stylesheet" href="../styles/index.css">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 </style>
@@ -16,13 +16,13 @@
 
 <body>
     <?php
-        include 'sidebar.php';
+        include "sidebar.php";
     ?>
     <div class="content">
         <div class="quick-analytics">
             <button class="data">
                 <p class="view-message">View<br>Employees > </p>
-                <img class="data-img" src='./img/group.png' alt='Group'>
+                <img class="data-img" src='../img/group.png' alt='Group'>
                 <div>
                     <p class="main-title">Employee Count :</p>
                     <p class="main-data">
@@ -44,7 +44,7 @@
 
             <button class="data">
                 <p class="view-message">View<br>Departments > </p>
-                <img class="data-img" src='./img/building.png' alt='Departments'>
+                <img class="data-img" src='../img/building.png' alt='Departments'>
                 <div>
                     <p class="main-title">Department Count :</p>
                     <p class="main-data">
@@ -65,7 +65,7 @@
 
             <button class="data">
                 <p class="view-message">View<br>History > </p>
-                <img class="data-img" src='./img/department.png' alt='Average_count_per_department'>
+                <img class="data-img" src='../img/department.png' alt='Average_count_per_department'>
                 <div>
                     <p class="main-title">Average Count per Department:</p>
                     <p class="main-data">
@@ -86,7 +86,7 @@
 
             <button class="data">
                 <p class="view-message">View<br>Employees > </p>
-                <img class="data-img" src='./img/dollar-currency-symbol.png' alt='Average_salary'>
+                <img class="data-img" src='../img/dollar-currency-symbol.png' alt='Average_salary'>
                 <div>
                     <p class="main-title">Average Salary:</p>
                     <p class="main-data">
@@ -115,13 +115,22 @@
                     <th>Hired Date</th>
                     <th>View Details</th>
                 </tr>
-                <tr>
-                    <td>Trial</td>
-                    <td>Trial</td>
-                    <td>Trial</td>
-                    <td>Trial</td>
-                    <td>Trial</td>
-                </tr>
+                
+                    <?php
+                    $rows = last_three_employees();
+                    foreach ($rows as $toDisplay) {
+                        $departments = return_employee_department($toDisplay["employee_id"]);
+                        $department_string = formatted_employee_departments($departments);
+                        echo
+                        "<tr>".
+                        "<td>".$toDisplay['employee_name']."</td>".
+                        "<td>".$toDisplay['job_title']."</td>".
+                        "<td>".$department_string."</td>".
+                        "<td>".$toDisplay['hired_date']."</td>".
+                        "</tr>";
+                    }
+                    ?>
+                
             </table>
         </div>
     </div>

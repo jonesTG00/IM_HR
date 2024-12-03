@@ -75,7 +75,7 @@
   }
 
   tr:nth-child(odd) {
-    background-color: #9fc68f;
+    background-color: #569e3a;
   }
 
   body .content {
@@ -86,6 +86,7 @@
     flex-flow: row;
     flex-wrap: wrap;
     align-items: flex-start;
+    justify-content: center;
   }
 
   body .content .quick-analytics{

@@ -1,7 +1,7 @@
 <?php
 
 function connection(){
-    include "db.php";
+    include "../db.php";
     $conn;
     try {
         $conn = new mysqli($servername, $username, $password, $db);
@@ -115,12 +115,69 @@ function return_count_greater_than_average_salary(){
     return $result->num_rows;
 }
 
+function last_three_employees(){
+    $conn = connection();
+    if ($conn == null) {
+        return null;
+    }
+    $query = "
+    SELECT
+    employee_id,
+    concat(employee_lname, ', ', employee_fname) as 'employee_name', 
+    job_title,
+    hired_date
+    FROM employees ORDER BY hired_date DESC LIMIT 3;";
+    $result = $conn->query($query); 
+    $rows = array();
+    while ($row = $result->fetch_assoc()) {
+        $rows[] = $row;
+    }
+    $conn->close();
+    return $rows;
+}
+
+function return_employee_department($employee_id){
+    try {
+        $conn = connection();
+        if ($conn == null) {
+            return null;
+        }
+        $query = "
+        SELECT
+        d.department_name as 'department'
+        FROM employee_departments ed
+        JOIN departments d
+        ON ed.department_id = d.department_id
+        WHERE ed.employee_id = ". $employee_id . ";";
+        $result = $conn->query($query);
+        $rows = array();
+        while ($row = $result->fetch_assoc()) {
+            echo $row["department"];
+        }
+        $conn->close();
+        return $rows;
+    } catch (\Throwable $th) {
+        echo $th["message"];
+    }
+
+}
+
 
 
 // UTILITIES
 function formatted_date($toFormat){
     $date = new DateTime($toFormat);
     return $date->format('F j, Y');
+}
+
+function  formatted_employee_departments(array $department_list){
+
+    $toReturn = "";
+    foreach($department_list as $x){
+        $toReturn = $x["department"].", ";
+    }
+
+    return $toReturn;
 }
 
 // function CheckConnection(){
