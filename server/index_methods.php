@@ -1,16 +1,6 @@
 <?php
 
-function connection(){
-    include "../db.php";
-    $conn;
-    try {
-        $conn = new mysqli($servername, $username, $password, $db);
-    } catch (\Throwable $th) {
-        echo '<script>alert("Connection to database error occured");</script>';
-        return null;
-    }
-    return $conn;
-}
+
 
 // QUERIES
 function return_employee_count(){

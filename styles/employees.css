@@ -1,0 +1,126 @@
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  /* 2. Remove default margin */
+  * {
+    margin: 0;
+  }
+  
+  /* 5. Improve media defaults */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+  
+  /* 6. Inherit fonts for form controls */
+  input, button, textarea, select {
+    font: inherit;
+  }
+  
+  /* 7. Avoid text overflows */
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+  
+  /* 8. Improve line wrapping */
+  p {
+    text-wrap: pretty;
+  }
+
+  button {
+    border-radius: 0;
+    text-align: inherit;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    color: inherit;
+    font: inherit;
+  }
+
+  table {
+    font-family: Poppins;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 1rem;
+    font-size: .75rem;
+  }
+
+  tr:nth-child(odd) {
+    background-color: #569e3a;
+  }
+
+  body .content{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap:1rem;
+    padding: 2rem;
+    width: 100%;
+  }
+
+  body .content .page-title{
+    font-size: 3rem;
+    font-family: Poppins;
+    font-weight: bold;
+  }
+
+  body .content .operations-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    gap:0.25rem;
+  }
+
+  body .content .operations-container .operations-button{
+    padding: .75rem;
+    background-color: #47663B;
+    color: white;
+    flex:1;
+    border-radius: 10px;
+  }
+
+  body .content .operations-container .operations-button .operation-name{
+    font-size: 1.25rem;
+    font-family: Poppins;
+  }
+
+  body .content .table-container .table-title{
+    font-family: IBM Plex Serif;
+  }
+
+  body .content .table-container table .view-button{
+    background-color: #E8ECD7;
+    padding: .25rem;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    transition: .15s ease-in-out;
+    font-family: Poppins;
+  }
+
+  body .content .table-container table .view-button:hover{
+    background-color: #47663B;
+    color: white;
+  }
+
+  body .content .view-all{
+    padding: 1rem;
+    background-color: #47663B;
+    font-family: Poppins;
+    align-self: flex-end;
+    width: fit-content;
+    color: white;
+    border-radius: 10px;
+  }
+
+

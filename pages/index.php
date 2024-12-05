@@ -1,5 +1,8 @@
 <?php
-    include '../methods/index_methods.php';
+    include '../server/Employee.php';
+    include '../server/Department.php';
+    include '../server/Utilities.php';
+    include '../Database.php';
 ?>
 
 <!DOCTYPE html>
@@ -28,14 +31,14 @@
                     <p class="main-title">Employee Count :</p>
                     <p class="main-data">
                         <?php
-                        $row = return_employee_count();
+                        $row = Employee::return_employee_count();
                         echo $row;
                     ?>
                     </p>
 
                     <p class="additional-data">Last Hire :
                         <?php
-                        $last_hired = return_last_hired();
+                        $last_hired = Employee::return_last_hired();
                         echo formatted_date($last_hired["hired_date"]);
                      ?>
                     </p>
@@ -50,14 +53,14 @@
                     <p class="main-title">Department Count :</p>
                     <p class="main-data">
                         <?php
-                        $row = return_department_count();
+                        $row = Department::return_department_count();
                         echo $row;
                     ?>
                     </p>
 
                     <p class="additional-data"> Last Department Created :
                         <?php
-                        $last_created = return_last_department_created();
+                        $last_created = Department::return_last_department_created();
                         echo $last_created["department_name"];
                      ?>
                     </p>
@@ -71,14 +74,14 @@
                     <p class="main-title">Average Count per Department:</p>
                     <p class="main-data">
                         <?php
-                        $row = return_average_count_per_department();
+                        $row = Department::return_average_count_per_department();
                         echo round($row["AVG"]);
                     ?>
                     </p>
 
                     <p class="additional-data"> Department with most population :
                         <?php
-                        $most_populated = return_most_populated_department();
+                        $most_populated = Department::return_most_populated_department();
                         echo $most_populated["department_name"];
                      ?>
                     </p>
@@ -92,14 +95,14 @@
                     <p class="main-title">Average Salary:</p>
                     <p class="main-data">
                         <?php
-                        $row = return_average_salary();
+                        $row = Employee::return_average_salary();
                         echo round($row["AVGSALARY"],2);
                     ?>
                     </p>
 
                     <p class="additional-data">Employees with salary higher than average :
                         <?php
-                        $count = return_count_greater_than_average_salary();
+                        $count = Employee::return_count_greater_than_average_salary();
                         echo $count;
                      ?>
                     </p>
@@ -107,23 +110,23 @@
             </button>
         </div>
 
-        <p class="section-title">Tables</p>
-        <div class="tables">
-            <div class="table-container">
-                <p class="table-title">3 recently hired employees: </p>
-                <table>
-                    <tr>
-                        <th>Employee Name</th>
-                        <th>Job Title</th>
-                        <th>Department Name</th>
-                        <th>Hired Date</th>
-                        <th>View Details</th>
-                    </tr>
+        <form action="" method="get">
+            <div class="tables">
+                <div class="table-container">
+                    <p class="table-title">Recently hired employees: </p>
+                    <table>
+                        <tr>
+                            <th>Employee Name</th>
+                            <th>Job Title</th>
+                            <th>Department Name</th>
+                            <th>Hired Date</th>
+                            <th>View Details</th>
+                        </tr>
 
-                    <?php
-                    $rows = last_three_employees();
+                        <?php
+                    $rows = Employee::return_recent_employees(3);
                     foreach ($rows as $toDisplay) {
-                        $departments = return_employee_department($toDisplay["employee_id"]);
+                        $departments = Employee::return_employee_department($toDisplay["employee_id"]);
                         $department_string = formatted_employee_departments($departments);
                         echo
                         "<tr>".
@@ -136,9 +139,43 @@
                     }
                     ?>
 
-                </table>
-            </div>
+                    </table>
+                </div>
+        </form>
+        <div class="table-container">
+            <p class="table-title">Recent tasks added: </p>
+            <table>
+                <tr>
+                    <th>Task Name</th>
+                    <th>Project Name</th>
+                    <th>Date Added</th>
+                    <th>Accomplished</th>
+                    <th>View Details</th>
+                </tr>
+
+                <?php
+                    $rows = Employee::return_recent_employees(3);
+                    foreach ($rows as $toDisplay) {
+                        $departments = Employee::return_employee_department($toDisplay["employee_id"]);
+                        $department_string = formatted_employee_departments($departments);
+                        echo
+                        "<tr>".
+                        "<td>".$toDisplay['employee_name']."</td>".
+                        "<td>".$toDisplay['job_title']."</td>".
+                        "<td>".$department_string."</td>".
+                        "<td>".$toDisplay['hired_date']."</td>".
+                        "<td><button class='view-button'><p>View</p><button></td>".
+                        "</tr>";
+                    }
+                    ?>
+
+            </table>
         </div>
+    </div>
+
+
+
+
     </div>
 </body>
 <?php
