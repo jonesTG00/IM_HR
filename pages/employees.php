@@ -26,45 +26,46 @@
             <button class="operations-button" onClick=GoToAddEmployee()>
                 <p class="operation-name">Add Employee</p>
             </button>
-            <button class="operations-button">
+            <button class="operations-button" onClick=GoToUpdateEmployee()>
                 <p class="operation-name">Update Employee</p>
             </button>
             <button class="operations-button">
-                <p class="operation-name">Delete Employee</p>
+                <p class="operation-name">Update Employee Salary</p>
             </button>
         </div>
 
-        <form action="" method="get">
-            <div class="table-container">
-                <p class="table-title">Recently hired employees: </p>
-                <table>
-                    <tr>
-                        <th>Employee Name</th>
-                        <th>Job Title</th>
-                        <th>Department Name</th>
-                        <th>Hired Date</th>
-                        <th>View Details</th>
-                    </tr>
 
-                    <?php
+        <div class="table-container">
+            <p class="table-title">Recently hired employees: </p>
+            <table>
+                <tr>
+                    <th>Employee Name</th>
+                    <th>Job Title</th>
+                    <th>Department Name</th>
+                    <th>Hired Date</th>
+                    <th>View Details</th>
+                </tr>
+
+                <?php
                     $rows = Employee::return_recent_employees(5);
                     foreach ($rows as $toDisplay) {
                         $departments = Employee::return_employee_department($toDisplay["employee_id"]);
                         $department_string = formatted_employee_departments($departments);
                         echo
+                        "<form action='employees-pages/view-one-employee.php' method='get'>".
                         "<tr>".
                         "<td>".$toDisplay['employee_name']."</td>".
                         "<td>".$toDisplay['job_title']."</td>".
                         "<td>".$department_string."</td>".
                         "<td>".$toDisplay['hired_date']."</td>".
-                        "<td><button class='view-button'><p>View</p><button></td>".
-                        "</tr>";
+                        "<td><button class='view-button type='submit' name='employee_id' value=".$toDisplay["employee_id"]."><p>View</p><button></td>".
+                        "</tr>".
+                        "</form>";
                     }
                     ?>
 
-                </table>
-            </div>
-        </form>
+            </table>
+        </div>
 
         <button class="view-all" onClick=GoToViewAllEmployees()>
             <p>View All Employees</p>
@@ -75,15 +76,15 @@
             window.location.href = 'employees-pages/add-employee.php';
         }
 
-        function GoToEmployees() {
-            window.location.href = 'employees.php';
+        function GoToUpdateEmployee() {
+            window.location.href = 'employees-pages/update-employee.php';
         }
 
         function GoToProjects() {
             window.location.href = 'projects.php';
         }
 
-        function GoToViewAllEmployees(){
+        function GoToViewAllEmployees() {
             window.location.href = 'employees-pages/view-all-employee.php'
         }
         </script>

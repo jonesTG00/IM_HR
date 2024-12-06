@@ -110,20 +110,52 @@
             </button>
         </div>
 
-        <form action="" method="get">
-            <div class="tables">
-                <div class="table-container">
-                    <p class="table-title">Recently hired employees: </p>
-                    <table>
-                        <tr>
-                            <th>Employee Name</th>
-                            <th>Job Title</th>
-                            <th>Department Name</th>
-                            <th>Hired Date</th>
-                            <th>View Details</th>
-                        </tr>
 
-                        <?php
+        <div class="tables">
+            <div class="table-container">
+                <p class="table-title">Recently hired employees: </p>
+                <table>
+                    <tr>
+                        <th>Employee Name</th>
+                        <th>Job Title</th>
+                        <th>Department Name</th>
+                        <th>Hired Date</th>
+                        <th>View Details</th>
+                    </tr>
+
+                    <?php
+                    $rows = Employee::return_recent_employees(3);
+                    foreach ($rows as $toDisplay) {
+                        $departments = Employee::return_employee_department($toDisplay["employee_id"]);
+                        $department_string = formatted_employee_departments($departments);
+                        echo
+                        "<form action='employees-pages/view-one-employee.php' method=''get''>".
+                        "<tr>".
+                        "<td>".$toDisplay['employee_name']."</td>".
+                        "<td>".$toDisplay['job_title']."</td>".
+                        "<td>".$department_string."</td>".
+                        "<td>".$toDisplay['hired_date']."</td>".
+                        "<td><button class='view-button type='submit' name='employee_id' value=".$toDisplay["employee_id"]."><p>View</p><button></td>".
+                        "</tr>".
+                        "</form>";
+                    }
+                    ?>
+
+                </table>
+            </div>
+            </form>
+            <div class="table-container">
+                <p class="table-title">Recent tasks added: </p>
+                <table>
+                    <tr>
+                        <th>Task Name</th>
+                        <th>Project Name</th>
+                        <th>Date Added</th>
+                        <th>Accomplished</th>
+                        <th>View Details</th>
+                    </tr>
+
+                    <?php
                     $rows = Employee::return_recent_employees(3);
                     foreach ($rows as $toDisplay) {
                         $departments = Employee::return_employee_department($toDisplay["employee_id"]);
@@ -139,39 +171,9 @@
                     }
                     ?>
 
-                    </table>
-                </div>
-        </form>
-        <div class="table-container">
-            <p class="table-title">Recent tasks added: </p>
-            <table>
-                <tr>
-                    <th>Task Name</th>
-                    <th>Project Name</th>
-                    <th>Date Added</th>
-                    <th>Accomplished</th>
-                    <th>View Details</th>
-                </tr>
-
-                <?php
-                    $rows = Employee::return_recent_employees(3);
-                    foreach ($rows as $toDisplay) {
-                        $departments = Employee::return_employee_department($toDisplay["employee_id"]);
-                        $department_string = formatted_employee_departments($departments);
-                        echo
-                        "<tr>".
-                        "<td>".$toDisplay['employee_name']."</td>".
-                        "<td>".$toDisplay['job_title']."</td>".
-                        "<td>".$department_string."</td>".
-                        "<td>".$toDisplay['hired_date']."</td>".
-                        "<td><button class='view-button'><p>View</p><button></td>".
-                        "</tr>";
-                    }
-                    ?>
-
-            </table>
+                </table>
+            </div>
         </div>
-    </div>
 
 
 

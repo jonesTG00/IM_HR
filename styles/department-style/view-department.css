@@ -29,6 +29,23 @@
     text-wrap: pretty;
   }
 
+  table {
+    font-family: Poppins;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 1rem;
+    font-size: .75rem;
+  }
+
+  tr:nth-child(odd) {
+    background-color: #eee;
+  }
+
   button {
     border-radius: 0;
     text-align: inherit;
@@ -116,6 +133,12 @@
 
   body .content .page-title{
     font-size: 3rem;
+    font-family: Poppins;
+    font-weight: bold;
+  }
+
+  body .content .table-title{
+    font-size: 1.5rem;
     font-family: Poppins;
     font-weight: bold;
   }

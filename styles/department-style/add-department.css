@@ -29,18 +29,6 @@
     text-wrap: pretty;
   }
 
-  button {
-    border-radius: 0;
-    text-align: inherit;
-    background: none;
-    box-shadow: none;
-    padding: 0;
-    cursor: pointer;
-    border: none;
-    color: inherit;
-    font: inherit;
-  }
-
   table {
     font-family: Poppins;
     border-collapse: collapse;
@@ -54,8 +42,20 @@
     font-size: .75rem;
   }
 
-  tr:nth-child(even) {
-    background-color: #569e3a;
+  tr:nth-child(odd) {
+    background-color: #eee;
+  }
+
+  button {
+    border-radius: 0;
+    text-align: inherit;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    color: inherit;
+    font: inherit;
   }
 
 
@@ -70,43 +70,20 @@
     font-family: Poppins;
   }
 
-  body .content .section-title{
-    font-family: Poppins;
-    font-size: 2rem;
-    font-weight: bold;
-  }
-
-  body .content .table-container .table-title{
-    font-family: IBM Plex Serif;
-  }
-
-  body .content .table-container table .view-button{
-    background-color: #E8ECD7;
-    padding: .25rem;
-    border-radius: 5px;
-    width: 100%;
-    text-align: center;
-    transition: .15s ease-in-out;
-    font-family: Poppins;
-  }
-
-  body .content .table-container table .view-button:hover{
-    background-color: #47663B;
-    color: white;
-  }
-
-  body .content .pagination-container{
+  body .content form{
     display: flex;
-    flex-flow: row nowrap;
-    gap: 1rem;
-    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap:1rem;
+    padding: 2rem;
+    width: 100%;
+    height: 100vh;
     font-family: Poppins;
-    font-size: 1.25rem;
-    
   }
-
-  body .content .pagination-container .pagination-button{
+  
+  body .content form .submit{
+    align-self: flex-end;
     padding: 1rem;
-    background-color: #569e3a;
+    background-color: #47663B;
     border-radius: 10px;
   }

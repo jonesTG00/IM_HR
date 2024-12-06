@@ -1,18 +1,18 @@
 <?php
-include '../../server/Employee.php';
-include '../../server/Department.php';
-include '../../server/Utilities.php';
-include '../../Database.php';
+include '../server/Employee.php';
+include '../server/Department.php';
+include '../server/Utilities.php';
+include '../Database.php';
 
 $pagination = isset($_GET['page']) ? $_GET['page']: 0;
-$rows = Employee::return_employees_pagination(5,($pagination * 5));
+$rows = Department::return_department_pagination(5,($pagination * 5));
 $isLessDisabled = false;
 $isAddDisabled = false;
 if ($pagination == 0) {
     $isLessDisabled = true;
 }
 
-if(ceil(Employee::return_employee_count() / 5) == ($pagination + 1)){
+if(ceil(Department::return_department_count() / 5) == ($pagination + 1)){
     $isAddDisabled = true;
 }
 
@@ -22,7 +22,7 @@ if(ceil(Employee::return_employee_count() / 5) == ($pagination + 1)){
 <html lang="en">
 
 <html lang="en">
-<link rel="stylesheet" href="../../styles/employees-style/view-all-employee.css">
+<link rel="stylesheet" href="../styles/department.css">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 </style>
@@ -38,25 +38,24 @@ if(ceil(Employee::return_employee_count() / 5) == ($pagination + 1)){
             <p class="table-title">Recent employees added: </p>
             <table>
                 <tr>
-                    <th>Employee Name</th>
-                    <th>Job Title</th>
-                    <th>Departments</th>
-                    <th>Hired Date</th>
+                    <th>Department ID</th>
+                    <th>Department Name</th>
+                    <th>Department Head</th>
+                    <th>Date Created</th>
                     <th>View Details</th>
                 </tr>
 
                 <?php
                     foreach ($rows as $toDisplay) {
-                        $departments = Employee::return_employee_department($toDisplay["employee_id"]);
-                        $department_string = formatted_employee_departments($departments);
+                        $head = Employee::return_employee_full_name($toDisplay["department_head"]);
                         echo
-                        "<form action='view-one-employee.php' method='get'>".
+                        "<form action='department-pages/view-department.php' method='get'>".
                         "<tr>".
-                        "<td>".$toDisplay['employee_name']."</td>".
-                        "<td>".$toDisplay['job_title']."</td>".
-                        "<td>".$department_string."</td>".
-                        "<td>".$toDisplay['hired_date']."</td>".
-                        "<td><button class='view-button type='submit' name='employee_id' value=".$toDisplay["employee_id"]."><p>View</p><button></td>".
+                        "<td>".$toDisplay['department_id']."</td>".
+                        "<td>".$toDisplay['department_name']."</td>".
+                        "<td>".$head[0]['Full Name']."</td>".
+                        "<td>".$toDisplay['creation_date']."</td>".
+                        "<td><button class='view-button type='submit' name='department_id' value=".$toDisplay["department_id"]."><p>View</p><button></td>".
                         "</tr>".
                         "</form>";
                     }
@@ -64,8 +63,7 @@ if(ceil(Employee::return_employee_count() / 5) == ($pagination + 1)){
 
             </table>
         </div>
-
-        <form action="view-all-employee.php" method="get">
+        <form action="department.php" method="get">
             <div class="pagination-container">
                 <p>Page</p>
                 <?php
@@ -81,7 +79,16 @@ if(ceil(Employee::return_employee_count() / 5) == ($pagination + 1)){
 
             </div>
         </form>
+        <button class="add-button" onCLick=GoToAddDepartment()>Add Department</button>
+
     </div>
+
+
 </body>
+<script>
+function GoToAddDepartment() {
+    window.location.href = 'department-pages/add-department.php';
+}
+</script>
 
 </html>

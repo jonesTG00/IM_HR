@@ -55,7 +55,7 @@
   }
 
   tr:nth-child(odd) {
-    background-color: #569e3a;
+    background-color: #eee;
   }
 
   body .content {

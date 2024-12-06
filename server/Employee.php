@@ -77,6 +77,58 @@ class Employee{
         
     }
 
+    public function update_employee(){
+        $query = 
+        "
+        UPDATE employees
+        SET
+        employee_fname = '".$this->employee_fname."',
+        employee_lname = '".$this->employee_lname."',
+        employee_mname = '".$this->employee_mname."',
+        job_title = '".$this->job_title."',
+        salary = ".$this->salary.",
+        email = '".$this->email."',
+        mobile_number = '".$this->mobile_number."',
+        street_subdivision = '".$this->street_subdivision."',
+        barangay = '".$this->barangay."',
+        city = '".$this->city."',
+        province = '".$this->province."',
+        birthday = '".$this->birthday."',
+        marital_status = '".$this->marital_status."',
+        hired_date = '".$this->hired_date."'
+        WHERE
+        employee_id = ".$this->employee_id.";
+        ";
+
+        try {
+            $conn = connection();
+            $this->employee_id = Employee::return_latest_id();
+            $result = $conn->query($query);
+            $conn->close();
+            echo "<script>alert('Updated Successfully')</script>";
+        } catch (\Throwable $th) {
+            echo "<script>alert('".$th->getMessage()."')</script>";
+        }
+        
+    }
+
+    public static function return_employee_by_id($id){
+        try {
+            $conn = connection();
+            $query = "SELECT * FROM employees WHERE employee_id = ".$id."";
+            $result = $conn->query($query);
+            $rows = array();
+            while ($row = $result->fetch_assoc()) {
+                $rows[] = $row;
+            }
+            $conn->close();
+            return $rows;
+        } catch (\Throwable $th) {
+            echo "<script>alert('".$th->getMessage()."')</script>";
+        }
+        
+    }
+
     public function add_employee_to_department($department_name_to_add){
         try {
             $query = "
@@ -90,6 +142,25 @@ class Employee{
         } catch (\Throwable $th) {
             echo "<script>alert('".$th->getMessage()."')</script>";
         }
+    }
+
+    public static function return_all_employees(){
+        $conn = connection();
+        if ($conn == null) {
+            return null;
+        }
+        $query = "
+        SELECT
+        employee_id,
+        concat(employee_lname, ', ', employee_fname, ' ', employee_mname) as 'employee_name'
+        FROM employees;";
+        $result = $conn->query($query); 
+        $rows = array();
+        while ($row = $result->fetch_assoc()) {
+            $rows[] = $row;
+        }
+        $conn->close();
+        return $rows;
     }
 
     public static function return_latest_id(){
@@ -218,6 +289,21 @@ class Employee{
             echo $th["message"];
         }
     
+    }
+
+    public static function return_employee_full_name($id){
+        $query = "
+        SELECT CONCAT(employee_lname, ', ',employee_fname, ' ', employee_mname) AS 'Full Name'
+        FROM employees WHERE employee_id = $id;
+        ";
+        $conn = connection();
+        $result = $conn->query($query);
+        $rows = array();
+        while ($row = $result->fetch_assoc()) {
+            $rows[] = $row;
+        }
+        $conn->close();
+        return $rows;
     }
     
 }

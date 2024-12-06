@@ -4,7 +4,7 @@ function formatted_date($toFormat){
     return $date->format('F j, Y');
 }
 
-function  formatted_employee_departments(array $department_list){
+function formatted_employee_departments(array $department_list){
 
     $toReturn = "";
     foreach($department_list as $x){
