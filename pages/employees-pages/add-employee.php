@@ -16,7 +16,8 @@
         $province = $_POST["province"];
         $birthday = $_POST["birthday"];
         $job_title = $_POST["job_title"];
-        $salary = $_POST["salary"];
+        $salary = (float) $_POST["salary"];
+        $hired_date = $_POST["hired_date"];
         $marital_status;
         if (isSet($_POST["marital_status"])) {
             $marital_status = $_POST["marital_status"];
@@ -26,10 +27,20 @@
             $department_name = $_POST["department_name"];
         }
         
-        
-        if ($fname == "" || $lname="" || $email == "" || $phone_number == "" || $barangay == "" || $city == "" || $phone_number == ""
-        || $province == "" || $job_title == "" || $salary = "" || $marital_status == "") {
+        if ($fname == "" || $lname=="" || $email == "" || $phone_number == "" || $barangay == "" || $city == "" || $phone_number == ""
+        || $province == "" || $job_title == "" || $salary == "" || $marital_status == "") {
             echo "<script>alert('Required fields are empty')</script>";
+        } elseif(floatval($salary) == 0){
+            echo "<script>alert('Invalid value for salary')</script>"; 
+        } elseif (!ctype_digit($phone_number) && strlen($phone_number) != 9) {
+            echo "<script>alert('Invalid value for phone number')</script>"; 
+        } elseif (strtotime($birthday) >= strtotime('now') || strtotime($hired_date) >= strtotime('now')) {
+            echo "<script>alert('Invalid value for birthday')</script>"; 
+        } else {
+            $toAdd = new Employee(-1,$fname, $lname, $mname, $job_title, floatval($salary), $hired_date
+            , $email, $phone_number, $street_subdivision, $barangay, $city, $province, $birthday, $marital_status);
+            $toAdd->employee_add_to_database();
+            $toAdd->add_employee_to_department($department_name);
         }
     }
 ?>
@@ -74,8 +85,9 @@
                     <label for="email">Email *</label>
                     <input type="text" id="email" name="email" placeholder="Ex. juan@gmail.com" value="">
 
+                    <label for="phone_number">Phone Number *</label>
                     <div class="contact-number-container">
-                        <label for="phone_number">Phone Number *</label>
+
                         <p class="contact-number">+63</p>
                         <input type="text" id="phone_number" name="phone_number" placeholder="Ex. 987654321" value="">
                     </div>
@@ -103,10 +115,11 @@
                 <div class="additional section">
 
                     <p class="section-title">Additonal *</p>
-
+                    <label for="birthday">Birthday *</label>
                     <input type="date" id="birthday" name="birthday" value="">
+                    <p>Marital Status *</p>
                     <div class="marital-status-container">
-                        <input type="radio" name="marital_status" value="single"> Single
+                        <input type="radio" name="marital_status" value="single" checked="checked"> Single
                         <input type="radio" name="marital_status" value="Married"> Married
                         <input type="radio" name="marital_status" value="Widowed"> Widowed
                         <input type="radio" name="marital_status" value="Seperated"> Seperated
@@ -133,6 +146,9 @@
                         } 
                         ?>
                     </select>
+
+                    <label for="hired_date">Hired Date *</label>
+                    <input type="date" id="hired_date" name="hired_date" value="">
 
                 </div>
 

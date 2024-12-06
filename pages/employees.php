@@ -66,7 +66,7 @@
             </div>
         </form>
 
-        <button class="view-all">
+        <button class="view-all" onClick=GoToViewAllEmployees()>
             <p>View All Employees</p>
         </button>
 
@@ -81,6 +81,10 @@
 
         function GoToProjects() {
             window.location.href = 'projects.php';
+        }
+
+        function GoToViewAllEmployees(){
+            window.location.href = 'employees-pages/view-all-employee.php'
         }
         </script>
 

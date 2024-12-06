@@ -40,7 +40,25 @@
     color: inherit;
     font: inherit;
   }
+
+  table {
+    font-family: Poppins;
+    border-collapse: collapse;
+    width: 100%;
+  }
   
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 1rem;
+    font-size: .75rem;
+  }
+
+  tr:nth-child(even) {
+    background-color: #569e3a;
+  }
+
+
   body .content{
     display: flex;
     flex-direction: column;
@@ -48,54 +66,47 @@
     gap:1rem;
     padding: 2rem;
     width: 100%;
+    height: 100vh;
     font-family: Poppins;
-    font-size: .95rem;
   }
 
-  body .content .page-title{
+  body .content .section-title{
+    font-family: Poppins;
     font-size: 2rem;
-    font-family: Poppins;
     font-weight: bold;
   }
 
-  body .content .fillup-form form{
-    display: flex;
-    flex-flow: row;
-    flex-wrap: wrap;
-    gap: .5rem;
+  body .content .table-container .table-title{
+    font-family: IBM Plex Serif;
+  }
+
+  body .content .table-container table .view-button{
+    background-color: #E8ECD7;
+    padding: .25rem;
+    border-radius: 5px;
     width: 100%;
-    height: 100%;
-    border: .1rem solid #47663B;
-    border-radius: 10px;
-    padding: 1rem;
-    justify-content: space-between;
+    text-align: center;
+    transition: .15s ease-in-out;
+    font-family: Poppins;
   }
 
-  body .content .fillup-form form .section{
-    display: flex;
-    flex-flow: column wrap;
-    /* justify-content: space-around; */
-    /* border: 1px solid black; */
-    width: 45%;
-  }
-
-  body .content .fillup-form form .section .section-title{
-    font-size: 1rem;
-    font-weight: bold;
-  }
-
-  body .content .fillup-form form .submit{
+  body .content .table-container table .view-button:hover{
     background-color: #47663B;
-    width: fit-content;
-    border-radius: 10px;
-    padding: 1rem;
     color: white;
-    justify-content: space-between;
   }
 
-  body .content .fillup-form form .contact-number-container{
+  body .content .pagination-container{
     display: flex;
     flex-flow: row nowrap;
+    gap: 1rem;
     align-items: center;
-    gap: .5rem;
+    font-family: Poppins;
+    font-size: 1.25rem;
+    justify-self: flex-end;
+  }
+
+  body .content .pagination-container .pagination-button{
+    padding: 1rem;
+    background-color: #569e3a;
+    border-radius: 10px;
   }

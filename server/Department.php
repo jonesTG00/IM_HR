@@ -69,6 +69,20 @@ class Department{
         $conn->close();
         return $result->fetch_assoc();
     }
+
+    public static function return_department_id_with_department_name($department_name){
+        $conn = connection();
+        if ($conn == null) {
+            return null;
+        }
+        $query = "
+        SELECT department_id as 'id' FROM departments WHERE department_name = '".$department_name."';
+        ";
+        $result = $conn->query($query);
+        $id = $result->fetch_assoc();
+        $conn->close();
+        return $id['id'];
+    }
 }
 
 ?>
