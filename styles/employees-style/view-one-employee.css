@@ -115,7 +115,7 @@
   }
 
   body .content .page-title{
-    font-size: 3rem;
+    font-size: 1rem;
     font-family: Poppins;
     font-weight: bold;
   }
@@ -128,4 +128,18 @@
   
   body .content .information{
     font-size: 1.5rem;
+  }
+
+  body .operation-button{
+    background-color: #47663B;
+    padding: .5rem;
+    border-radius: 10px;
+    width: 100%;
+  }
+
+  body .content .operation{
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1rem;
+    justify-content: flex-end;
   }

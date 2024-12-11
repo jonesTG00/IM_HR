@@ -8,6 +8,13 @@ $department_data = Department::return_department_data($_GET["department_id"]);
 $employee_list = Department::return_employees_in_department($department_data[0]["department_id"]);
 $head = Employee::return_employee_full_name($department_data[0]["department_head"]);
 
+if (isset($_POST["delete_department"])) {
+    $department_id = $_POST["delete_department"];
+    Department::delete_department($department_id);
+    echo "<script>alert('Removed Successfully');
+    window.location.href='../department.php';
+    </script>";
+}
 
 ?>
 
@@ -78,6 +85,22 @@ $head = Employee::return_employee_full_name($department_data[0]["department_head
                 }
                 ?>
             </table>
+        </div>
+        <div class="operation-container">
+            <form action="edit-department.php" method="get">
+                <?php
+                echo "
+                <button class='operation-button' type='submit' value=".$_GET["department_id"]." name='department_id'>Update Department</button>
+                "
+                ?>
+            </form>
+            <form action="" method="post">
+                <?php
+                echo "
+                <button class='operation-button' type='submit' value=".$_GET["department_id"]." name='delete_department'>Delete Department</button>
+                "
+                ?>
+            </form>
         </div>
     </div>
 

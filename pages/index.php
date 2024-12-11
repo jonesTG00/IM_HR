@@ -2,6 +2,7 @@
     include '../server/Employee.php';
     include '../server/Department.php';
     include '../server/Utilities.php';
+    include '../server/Project.php';
     include '../Database.php';
 ?>
 
@@ -129,38 +130,6 @@
                         $departments = Employee::return_employee_department($toDisplay["employee_id"]);
                         $department_string = formatted_employee_departments($departments);
                         echo
-                        "<form action='employees-pages/view-one-employee.php' method=''get''>".
-                        "<tr>".
-                        "<td>".$toDisplay['employee_name']."</td>".
-                        "<td>".$toDisplay['job_title']."</td>".
-                        "<td>".$department_string."</td>".
-                        "<td>".$toDisplay['hired_date']."</td>".
-                        "<td><button class='view-button type='submit' name='employee_id' value=".$toDisplay["employee_id"]."><p>View</p><button></td>".
-                        "</tr>".
-                        "</form>";
-                    }
-                    ?>
-
-                </table>
-            </div>
-            </form>
-            <div class="table-container">
-                <p class="table-title">Recent tasks added: </p>
-                <table>
-                    <tr>
-                        <th>Task Name</th>
-                        <th>Project Name</th>
-                        <th>Date Added</th>
-                        <th>Accomplished</th>
-                        <th>View Details</th>
-                    </tr>
-
-                    <?php
-                    $rows = Employee::return_recent_employees(3);
-                    foreach ($rows as $toDisplay) {
-                        $departments = Employee::return_employee_department($toDisplay["employee_id"]);
-                        $department_string = formatted_employee_departments($departments);
-                        echo
                         "<tr>".
                         "<td>".$toDisplay['employee_name']."</td>".
                         "<td>".$toDisplay['job_title']."</td>".
@@ -169,6 +138,38 @@
                         "<td><button class='view-button'><p>View</p><button></td>".
                         "</tr>";
                     }
+                    ?>
+
+                </table>
+            </div>
+            </form>
+            <div class="table-container">
+                <p class="table-title">Recent projects added: </p>
+                <table>
+                    <tr>
+                        <th>Project ID</th>
+                        <th>Project Name</th>
+                        <th>Date Started</th>
+                        <th>Date Finished</th>
+                        <th>View Details</th>
+                    </tr>
+
+
+
+                    <?php
+                        $rows = Project::return_recent_projects(3);
+                        foreach ($rows as $toDisplay) {
+                            echo
+                            "<form action='project-pages/view-project.php' method=''get''>".
+                            "<tr>".
+                            "<td>".$toDisplay['id']."</td>".
+                            "<td>".$toDisplay['name']."</td>".
+                            "<td>".$toDisplay['start']."</td>".
+                            "<td>".$toDisplay['end']."</td>".
+                            "<td><button class='view-button type='submit' name='project_id' value=".$toDisplay["id"]."><p>View</p><button></td>".
+                            "</tr>".
+                            "</form>";
+                        }
                     ?>
 
                 </table>

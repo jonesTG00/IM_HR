@@ -175,3 +175,10 @@
     color: #47663B;
     
   }
+
+  body .content .task-table .table-operation{
+    background-color: #47663B;
+    color: #eee;
+    padding: .5rem;
+    border-radius: 10px;
+  }

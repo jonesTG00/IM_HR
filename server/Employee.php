@@ -112,6 +112,18 @@ class Employee{
         
     }
 
+    public static function delete_employee($id){
+        try {
+            $conn = connection();
+            $query = "DELETE FROM employees WHERE employee_id = ".$id."";
+            $result = $conn->query($query);
+            $conn->close();
+            // echo "<script>alert('Updated Successfully')</script>";
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
+
     public static function return_employee_by_id($id){
         try {
             $conn = connection();
@@ -144,6 +156,21 @@ class Employee{
         }
     }
 
+    public static function add_employee_to_department_static($employee_id,$department_id){
+        try {
+            $query = "
+            INSERT INTO employee_departments (employee_id, department_id, assigned_date)
+            VALUES
+            (".$employee_id.",".$department_id.",'".date('Y-m-d')."');
+            ";
+            $conn = connection();
+            $result = $conn->query($query);
+            $conn->close();
+        } catch (\Throwable $th) {
+            echo "<script>alert('".$th->getMessage()."')</script>";
+        }
+    }
+
     public static function return_all_employees(){
         $conn = connection();
         if ($conn == null) {
@@ -152,7 +179,7 @@ class Employee{
         $query = "
         SELECT
         employee_id,
-        concat(employee_lname, ', ', employee_fname, ' ', employee_mname) as 'employee_name'
+        concat(employee_lname, ', ',employee_fname, ' ', employee_mname) as 'employee_name'
         FROM employees;";
         $result = $conn->query($query); 
         $rows = array();
@@ -273,6 +300,7 @@ class Employee{
             }
             $query = "
             SELECT
+            d.department_id as 'id',
             d.department_name as 'department'
             FROM employee_departments ed
             JOIN departments d
@@ -291,6 +319,32 @@ class Employee{
     
     }
 
+    public static function return_employee_department_not_included($employee_id){
+        try {
+            $conn = connection();
+            if ($conn == null) {
+                return null;
+            }
+            $query = "
+            SELECT d.department_name as 'department', d.department_id as 'id'
+            FROM departments d
+            WHERE NOT EXISTS (
+            SELECT 1
+            FROM employee_departments ed
+            WHERE ed.employee_id = ".$employee_id." AND ed.department_id = d.department_id);";
+            $result = $conn->query($query);
+            $rows = array();
+            while ($row = $result->fetch_assoc()) {
+                $rows[] = $row;
+            }
+            $conn->close();
+            return $rows;
+        } catch (\Throwable $th) {
+            echo $th->getMessage();
+        }
+    
+    }
+
     public static function return_employee_full_name($id){
         $query = "
         SELECT CONCAT(employee_lname, ', ',employee_fname, ' ', employee_mname) AS 'Full Name'
@@ -304,6 +358,19 @@ class Employee{
         }
         $conn->close();
         return $rows;
+    }
+
+    public static function remove_employee_from_department($employee_id, $department_id){
+        try {
+            $query = "
+            DELETE FROM employee_departments WHERE employee_id = ".$employee_id." AND department_id = ".$department_id."
+            ;";
+            $conn = connection();
+            $result = $conn->query($query);
+            $conn->close();
+        } catch (\Throwable $th) {
+            echo "<script>alert('".$th->getMessage()."')</script>";
+        }
     }
     
 }

@@ -26,7 +26,6 @@ class Department{
             '".$this->creation_date."'
             );
             ";
-            echo "<script>alert('".$query."')</script>";
             $this->department_id = Employee::return_latest_id();
             $result = $conn->query($query);
             $conn->close();
@@ -102,6 +101,22 @@ class Department{
         $result = $conn->query($query);
         $conn->close();
         return $result->fetch_assoc();;
+    }
+
+    public static function update_department($department_name, $department_head, $department_id){
+        $conn = connection();
+        if ($conn == null) {
+            return null;
+        }
+        $query = "
+        UPDATE departments 
+        SET department_name = '".$department_name."', 
+        department_head = ".$department_head."
+        WHERE department_id = ".$department_id."
+        ";
+        echo "<script>alert(".$query.")</script>";
+        $result = $conn->query($query);
+        $conn->close();
     }
 
     public static function return_average_count_per_department(){
@@ -181,6 +196,20 @@ class Department{
         }
         $conn->close();
         return $rows;
+    }
+
+    public static function delete_department($department_id){
+        try {
+            
+            $conn = connection();
+            $query = "
+            DELETE FROM departments WHERE department_id = ".$department_id."
+            ";
+            $result = $conn->query($query);
+            $conn->close();
+        } catch (\Throwable $th) {
+            echo "<script>alert('".$th->getMessage()."')</script>";
+        }
     }
 }
 

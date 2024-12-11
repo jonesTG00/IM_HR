@@ -7,6 +7,12 @@ include '../../Database.php';
 $employee_data = Employee::return_employee_by_id($_GET["employee_id"]);
 $employee_department = Employee::return_employee_department($employee_data[0]["employee_id"]);
 
+if (isset($_POST["delete_id"])) {
+    echo "<script>alert(".$_POST["delete_id"].")</script>";
+    Employee::delete_employee($_POST["delete_id"]);
+    // echo "<script>window.location.href = '../employees.php'</script>";
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -129,12 +135,35 @@ $employee_department = Employee::return_employee_department($employee_data[0]["e
                 ?>
                 </p>
             </div>
+
+        </div>
+        <div class="operation">
             <form action="update-employee.php" method="get">
                 <?php
                 echo "
                 <button value=".$employee_data[0]['employee_id']." name='employee_id' type='submit'
                     class='operation-button'>Update
                     Employee</button>
+                "
+                ?>
+
+            </form>
+
+            <form action="update-employee-department.php" method="get">
+                <?php
+                echo "
+                <button value=".$employee_data[0]['employee_id']." name='employee_id' type='submit'
+                    class='operation-button'>Update Employee Department</button>
+                "
+                ?>
+
+            </form>
+
+            <form action="" method="post">
+                <?php
+                echo "
+                <button value=".$employee_data[0]['employee_id']." name='delete_id' type='submit'
+                    class='operation-button'>Delete Employee</button>
                 "
                 ?>
 

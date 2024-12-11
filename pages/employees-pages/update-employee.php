@@ -83,7 +83,7 @@ if (isset($_POST["update-employee"])) {
                     $toAdd = new Employee($id, $fname, $lname, $mname, $job_title, floatval($salary), $hired_date
         , $email, $mobile_number, $street_subdivision, $barangay, $city, $province, $birthday, $marital_status);
         $toAdd->update_employee();
-        echo "<script>alert(".$employee_details[0]["job_title"].")</script>";
+        echo "<script>window.location.href = '../employees.php'</script>";
     } 
         
         

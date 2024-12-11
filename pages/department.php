@@ -32,10 +32,10 @@ if(ceil(Department::return_department_count() / 5) == ($pagination + 1)){
     include "sidebar.php"
     ?>
     <div class="content">
-        <p class="section-title">Employee Name</p>
+        <p class="section-title">Departments</p>
 
         <div class="table-container">
-            <p class="table-title">Recent employees added: </p>
+            <p class="table-title">Departments: </p>
             <table>
                 <tr>
                     <th>Department ID</th>

@@ -1,0 +1,70 @@
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  /* 2. Remove default margin */
+  * {
+    margin: 0;
+  }
+  
+  /* 5. Improve media defaults */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+  
+  /* 6. Inherit fonts for form controls */
+  input, button, textarea, select {
+    font: inherit;
+  }
+  
+  /* 7. Avoid text overflows */
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+  
+  /* 8. Improve line wrapping */
+  p {
+    text-wrap: pretty;
+  }
+
+  button {
+    border-radius: 0;
+    text-align: inherit;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    color: inherit;
+    font: inherit;
+  }
+  
+  body .content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap:1rem;
+    padding: 2rem;
+    width: 100%;
+    font-family: Poppins;
+  }
+
+  body .content .update-tables{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap:.5rem;
+    padding: 1rem;
+    width: 50%;
+    text-align: center;
+  }
+
+  body .content .update-tables .department-button{
+    width: 100%;
+    border: 1px solid #47663B;
+    border-radius: 10px;
+    padding: 1rem;
+  }
+

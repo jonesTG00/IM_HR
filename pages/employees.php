@@ -26,12 +26,6 @@
             <button class="operations-button" onClick=GoToAddEmployee()>
                 <p class="operation-name">Add Employee</p>
             </button>
-            <button class="operations-button" onClick=GoToUpdateEmployee()>
-                <p class="operation-name">Update Employee</p>
-            </button>
-            <button class="operations-button">
-                <p class="operation-name">Update Employee Salary</p>
-            </button>
         </div>
 
 
@@ -86,6 +80,10 @@
 
         function GoToViewAllEmployees() {
             window.location.href = 'employees-pages/view-all-employee.php'
+        }
+
+        function GoToUpdateEmployeeDepartment() {
+            window.location.href = 'employees-pages/update-employee-department.php'
         }
         </script>
 
